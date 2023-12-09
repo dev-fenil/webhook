@@ -5,7 +5,7 @@ class DataChangesController < ApplicationController
     data_change = DataChange.new(data_change_params)
 
     if data_change.save
-    #   notify_third_parties(data_change)
+      notify_third_parties(data_change)
       render json: { message: 'DataChange created successfully' }
     else
       render json: { errors: data_change.errors.full_messages }, status: :unprocessable_entity
@@ -16,7 +16,7 @@ class DataChangesController < ApplicationController
     data_change = DataChange.find(params[:id])
 
     if data_change.update(data_change_params)
-    #   notify_third_parties(data_change)
+      notify_third_parties(data_change)
       render json: { message: 'DataChange updated successfully' }
     else
       render json: { errors: data_change.errors.full_messages }, status: :unprocessable_entity
